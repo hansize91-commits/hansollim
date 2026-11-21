@@ -15,5 +15,6 @@ artists:
   - 허왕정
 hours: "11:00-18:00"
 opening: "Opening 11.29 17:00"
+poster: 휘청-포스터.jpg
 photos: 2025-hwicheong
 ---
