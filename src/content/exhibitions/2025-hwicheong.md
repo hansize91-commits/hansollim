@@ -15,6 +15,7 @@ artists:
   - 허왕정
 hours: "11:00-18:00"
 opening: "Opening 11.29 17:00"
+credit: "이 사업은 대전광역시, (재)대전문화재단에서 사업비 일부를 지원 받았습니다. 후원 : 대전문화재단"
 poster: 휘청-포스터.jpg
 photos: 2025-hwicheong
 ---

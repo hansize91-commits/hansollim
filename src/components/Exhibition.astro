@@ -42,6 +42,7 @@ const artists = entry.data.artists ?? [];
       {entry.data.closed && <span>{entry.data.closed}</span>}
       {entry.data.opening && <span>{entry.data.opening}</span>}
     </p>
+    {entry.data.credit && <p class="credit">{entry.data.credit}</p>}
   </header>
 
   {

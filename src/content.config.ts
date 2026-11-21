@@ -24,6 +24,7 @@ const exhibitions = defineCollection({
     organizer: z.string().optional(),
     opening: z.string().optional(),
     closed: z.string().optional(),
+    credit: z.string().optional(),
     poster: z.string().optional(),
     photos: z.string().optional(),
     gallery: z
