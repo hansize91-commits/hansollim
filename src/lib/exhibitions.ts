@@ -25,6 +25,8 @@ export async function exhibitionsIn(category: Category): Promise<ExhibitionEntry
 }
 
 const SUBFOLDER_ORDER = [
+  '아카이브',
+  '엽서',
   '전시 전경사진',
   '오프닝 사진',
   '전시연계프로그램',
