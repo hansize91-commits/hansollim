@@ -7,14 +7,32 @@ export type Category = ExhibitionEntry['data']['category'];
 
 const IMAGE_RE = /\.(jpe?g|png|webp|gif|avif)$/i;
 
-export async function exhibitionsIn(category: Category): Promise<ExhibitionEntry[]> {
-  const all = await getCollection('exhibitions');
-  return all
-    .filter((entry) => entry.data.category === category)
-    .sort((a, b) => b.data.start.getTime() - a.data.start.getTime());
+export function compareExhibitions(a: ExhibitionEntry, b: ExhibitionEntry): number {
+  const aTime = a.data.start?.getTime();
+  const bTime = b.data.start?.getTime();
+  if (aTime != null && bTime != null && aTime !== bTime) return bTime - aTime;
+  const aOrder = a.data.order;
+  const bOrder = b.data.order;
+  if (aOrder != null && bOrder != null && aOrder !== bOrder) return bOrder - aOrder;
+  const aYear = a.data.year ?? (aTime != null ? new Date(aTime).getUTCFullYear() : 0);
+  const bYear = b.data.year ?? (bTime != null ? new Date(bTime).getUTCFullYear() : 0);
+  return bYear - aYear;
 }
 
-const SUBFOLDER_ORDER = ['전경', '작품', '오프닝'];
+export async function exhibitionsIn(category: Category): Promise<ExhibitionEntry[]> {
+  const all = await getCollection('exhibitions');
+  return all.filter((entry) => entry.data.category === category).sort(compareExhibitions);
+}
+
+const SUBFOLDER_ORDER = [
+  '전시 전경사진',
+  '오프닝 사진',
+  '전시연계프로그램',
+  '아마도 태권도일지',
+  '전경',
+  '작품',
+  '오프닝',
+];
 
 function byName(a: string, b: string): number {
   return a.localeCompare(b, 'en', { numeric: true });
@@ -54,8 +72,27 @@ export function photoFiles(folder: string): string[] {
   return listImages(dir).map((rel) => publicUrl(folder, rel));
 }
 
+function publicFileExists(urlPath: string): boolean {
+  const clean = decodeURIComponent(urlPath.split('?')[0] ?? '');
+  const relative = clean.startsWith('/') ? clean.slice(1) : clean;
+  return fs.existsSync(path.join(process.cwd(), 'public', relative));
+}
+
+export function exhibitionPhotos(
+  folder: string,
+  gallery?: Array<string | { image?: string }>,
+): string[] {
+  const listed = (gallery ?? [])
+    .map((item) => (typeof item === 'string' ? item : item?.image ?? ''))
+    .map((item) => item.trim())
+    .filter((item) => item.startsWith('/') && publicFileExists(item));
+  if (listed.length > 0) return listed;
+  return photoFiles(folder);
+}
+
 export function posterFile(folder: string, poster?: string): string | undefined {
   if (!poster) return undefined;
+  if (poster.startsWith('/')) return publicFileExists(poster) ? poster : undefined;
   const abs = path.join(process.cwd(), 'public', 'exhibitions', folder, poster);
   if (!fs.existsSync(abs)) return undefined;
   return `/exhibitions/${folder}/${encodeURIComponent(poster)}`;
@@ -70,8 +107,14 @@ export function paragraphs(body: string | undefined): string[] {
     .filter(Boolean);
 }
 
-export function dateLine(data: { start: Date; end: Date; dateLabel?: string }): string {
+export function dateLine(data: {
+  start?: Date;
+  end?: Date;
+  dateLabel?: string;
+  year?: number;
+}): string {
   if (data.dateLabel) return data.dateLabel;
+  if (!data.start || !data.end) return data.year ? String(data.year) : '';
   const part = (date: Date) => ({
     y: date.getUTCFullYear(),
     m: String(date.getUTCMonth() + 1).padStart(2, '0'),

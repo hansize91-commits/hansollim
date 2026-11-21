@@ -1,6 +1,6 @@
 # 임한솔 Hansol Lim
 
-임한솔 작가의 전시 아카이브입니다. 메뉴는 Hansol, CV, 개인전, 단체전, 마파두부, 독립출판사 쓰임입니다. 전시는 파일 하나로 추가하고, 같은 템플릿이 제목과 정보, 글, 사진 그리드를 보여 줍니다. 목록은 시작일 기준 최신순입니다.
+임한솔 작가의 전시 아카이브입니다. 메뉴는 Hansol, CV, 개인전, 단체전, 마파두부, 독립출판사 쓰임입니다. 전시는 파일 하나로 추가하고, 같은 템플릿이 제목과 정보, 글, 사진 그리드를 보여 줍니다. 목록은 최신순입니다. 시작일과 끝나는 날이 둘 다 있으면 그 날짜가 순서를 이깁니다. 날짜가 아직 없으면 `order` 숫자가 큰 전시가 위에 옵니다.
 
 ## 로컬에서 실행
 
@@ -59,6 +59,16 @@ public/exhibitions/2026-longing/photos/
 
 ```text
 public/exhibitions/2025-hwicheong/photos/
+```
+
+소제동 상상바캉스:
+
+```text
+public/exhibitions/2026-sangsang-vacance/상상바캉스-포스터.jpg
+public/exhibitions/2026-sangsang-vacance/photos/전시 전경사진/
+public/exhibitions/2026-sangsang-vacance/photos/오프닝 사진/
+public/exhibitions/2026-sangsang-vacance/photos/전시연계프로그램/
+public/exhibitions/2026-sangsang-vacance/photos/아마도 태권도일지/
 ```
 
 그리움이 남기고 간 것들:

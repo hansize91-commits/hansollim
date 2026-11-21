@@ -1,6 +1,8 @@
 ---
 title: "폭발하고 사랑하고 무뎌지고"
 category: solo
+year: 2024
+order: 4
 start: 2024-09-20
 end: 2024-09-29
 dateLabel: "2024.09.20-09.29"

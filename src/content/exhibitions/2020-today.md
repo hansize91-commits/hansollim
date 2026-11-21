@@ -1,6 +1,8 @@
 ---
 title: "오늘 왠지 이상해"
 category: solo
+year: 2020
+order: 2
 start: 2020-09-02
 end: 2020-09-10
 dateLabel: "2020.09.02 - 09.10"

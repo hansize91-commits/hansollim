@@ -1,6 +1,8 @@
 ---
 title: "지극히 사적인 공간"
 category: solo
+year: 2022
+order: 3
 start: 2022-11-04
 end: 2022-11-11
 dateLabel: "2022.11.04-11.11"

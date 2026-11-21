@@ -2,6 +2,8 @@
 title: "《그리움이 남기고 간 것들》"
 titleEn: "Things Left Behind by Longing"
 category: group
+year: 2026
+order: 60
 start: 2026-10-01
 end: 2026-10-13
 dateLabel: "2026.10.01-10.13"

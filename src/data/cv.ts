@@ -12,6 +12,7 @@ export const cvSections: CvSection[] = [
   {
     "title": "개인전",
     "paragraphs": [
+      "2026 ⟪중구미술축제 태양을 향해 던져라⟫",
       "2024 ⟪폭발하고사랑하고무뎌지고⟫, 구석으로부터, 대전",
       "2022 ⟪지극히 사적인 공간⟫, 동양장, 대전\n2020 ⟪오늘 왠지 이상해⟫, Artspace128, 대전\n2019 ⟪샌드위치 만들기⟫, 목원대학교산학협력단, 대전",
       "2018 ⟪피크닉드로잉⟫, KT&G상마당, 논산\n2015 ⟪One Loser Is Dancing⟫, Holly Art Gallery, Gold Coast,  Australia"
@@ -20,6 +21,10 @@ export const cvSections: CvSection[] = [
   {
     "title": "그룹전",
     "paragraphs": [
+      "2026 ⟪소제동 상상바캉스⟫",
+      "2026 ⟪그리움이 남기고 간 것들⟫",
+      "2026 ⟪공간의 감도⟫, 대전연구원",
+      "2026 ⟪공간의 온도⟫",
       "2025 ⟪마파두부 프로젝트 : 휘청⟫, 그린갤러리, 대전",
       "⟪비 : 자연재해⟫, 정영복 예술공간, 대전\n           ⟪미명⟫, Artspace128, 대전\n           ⟪겹겹의 낮⟫, 울산 북구예술창작소 감성갱도2020, 울산",
       "⟪DJ Know Jam⟫, 문화공간 주차, 대전\n2024 ⟪DJ Know Jam⟫, 커먼즈필드, 대전",

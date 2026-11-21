@@ -1,6 +1,8 @@
 ---
 title: "《겹겹의 낮》"
 category: group
+year: 2025
+order: 5
 start: 2025-07-22
 end: 2025-08-16
 dateLabel: "2025.07.22-08.16"

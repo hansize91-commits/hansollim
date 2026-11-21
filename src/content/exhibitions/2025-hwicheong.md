@@ -2,6 +2,8 @@
 title: "2025 <마파두부> 프로젝트 : 휘청"
 titleEn: "mapaduboo project"
 category: mapaduboo
+year: 2025
+order: 30
 start: 2025-11-29
 end: 2025-12-12
 dateLabel: "2025.11.29 (SAT) - 12.12 (FRI)"

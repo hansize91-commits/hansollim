@@ -3,7 +3,7 @@ import {
   dateLine,
   paragraphAlign,
   paragraphs,
-  photoFiles,
+  exhibitionPhotos,
   posterFile,
   type ExhibitionEntry,
 } from '../lib/exhibitions';
@@ -14,8 +14,8 @@ interface Props {
 }
 
 const { entry, heading = 'h2' } = Astro.props;
-const photos = photoFiles(entry.data.photos);
-const poster = posterFile(entry.data.photos, entry.data.poster);
+const photos = exhibitionPhotos(entry.data.photos ?? entry.id, entry.data.gallery);
+const poster = posterFile(entry.data.photos ?? entry.id, entry.data.poster);
 const body = paragraphs(entry.body);
 const artists = entry.data.artists ?? [];
 ---
@@ -31,12 +31,14 @@ const artists = entry.data.artists ?? [];
         </h2>
       )
     }
+    {entry.data.subtitle && <p class="subtitle">{entry.data.subtitle}</p>}
     {entry.data.titleEn && <p class="title-en">{entry.data.titleEn}</p>}
     <p class="meta">
-      <span>{dateLine(entry.data)}</span>
-      <span>{entry.data.venue}</span>
+      {dateLine(entry.data) && <span>{dateLine(entry.data)}</span>}
+      {entry.data.venue && <span>{entry.data.venue}</span>}
       {artists.length > 0 && <span>참여 작가 {artists.join(', ')}</span>}
       {entry.data.hours && <span>{entry.data.hours}</span>}
+      {entry.data.organizer && <span>{entry.data.organizer}</span>}
       {entry.data.closed && <span>{entry.data.closed}</span>}
       {entry.data.opening && <span>{entry.data.opening}</span>}
     </p>

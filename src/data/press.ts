@@ -1,0 +1,69 @@
+export type PressArticle = {
+  title: string;
+  outlet: string;
+  date: string;
+  href: string;
+};
+
+export const pressArticles: PressArticle[] = [
+  {
+    "title": "대전 소제동 가볼 만한 곳｜그림과 글로 즐기는 무료 예술전시, 2026 상상바캉스 🎨",
+    "outlet": "네이버 블로그 | 방찾는 여우",
+    "date": "2026. 11. 11. 21:28",
+    "href": "https://blog.naver.com/onetwo042/224473448287"
+  },
+  {
+    "title": "\"소제동이 거대한 미술관·책방이 된다\"… 대전 동구, 예술여행 '상상바캉스' 개최",
+    "outlet": "뉴데일리",
+    "date": "2026-10-27 16:06",
+    "href": "https://cc.newdaily.co.kr/site/data/html/2026/10/27/2026102700303.html"
+  },
+  {
+    "title": "대전 동구, 소제동서 주민·예술 잇는 '상상바캉스' 전시 진행",
+    "outlet": "브레이크뉴스",
+    "date": "2026/10/27 [18:06]",
+    "href": "http://www.breaknews.com/1246223"
+  },
+  {
+    "title": "대전 동구, 소제동에서 즐기는 예술여행 ‘상상바캉스’ 개최",
+    "outlet": "대전시티저널",
+    "date": "2026.10.27 18:01",
+    "href": "http://www.gocj.net/news/articleView.html?idxno=153767"
+  },
+  {
+    "title": "[대전동구소식] 소제동에서 즐기는 예술여행 ‘상상바캉스’ 개최 외",
+    "outlet": "데일리한국",
+    "date": "2026.10.27 17:09",
+    "href": "https://daily.hankooki.com/news/articleView.html?idxno=1418973"
+  },
+  {
+    "title": "\"그림 보고 글 쓰고\"…대전 소제동서 열흘간 문화예술 전시",
+    "outlet": "뉴스핌",
+    "date": "2026년10월27일 15:09",
+    "href": "https://www.newspim.com/news/view/20261027001050"
+  },
+  {
+    "title": "대전 동구, '그림과 글쓰기의 만남'... 11월 소제동 상상바캉스 전시 개막",
+    "outlet": "뉴스워커",
+    "date": "2026.10.27 13:16",
+    "href": "https://www.newsworker.co.kr/news/articleView.html?idxno=510703"
+  },
+  {
+    "title": "대전 소제동 ‘상상바캉스’…전시·글쓰기·예술체험 운영",
+    "outlet": "뉴스티앤티",
+    "date": "2026.10.27 12:18",
+    "href": "https://www.newstnt.com/news/articleView.html?idxno=725141"
+  },
+  {
+    "title": "제2회 대전 중구 미술축제             태양을 향해 던져라",
+    "outlet": "네이버 블로그 | 법생활징검다리",
+    "date": "2026. 10. 16. 13:38",
+    "href": "https://blog.naver.com/lawcj/224443667290"
+  },
+  {
+    "title": "임한솔개인전 _   대전중구미술축제",
+    "outlet": "네이버 블로그 | space TEMI",
+    "date": "2026. 10. 1. 17:38",
+    "href": "https://blog.naver.com/click3210/224428483533"
+  }
+];

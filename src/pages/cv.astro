@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { cvSections } from '../data/cv';
+import { pressArticles } from '../data/press';
 
 const leftTitles = new Set(['학력 및 주요 경력', '개인전', '그룹전']);
 const left = cvSections.filter((section) => leftTitles.has(section.title));
@@ -41,6 +42,23 @@ function renderLine(line: string) {
       ))
     }
   </div>
+  <section class="cv-press" id="press">
+    <h2>기사</h2>
+    <p class="press-en">Press</p>
+    <ul class="press-list">
+      {
+        pressArticles.map((article) => (
+          <li>
+            <a href={article.href} target="_blank" rel="noopener noreferrer">
+              {article.title}
+            </a>
+            <span class="press-meta">{article.outlet}</span>
+            <span class="press-meta">{article.date}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
   <section class="cv-email">
     <h2>Email</h2>
     <p><a href="mailto:hansize91@gmail.com">hansize91@gmail.com</a></p>

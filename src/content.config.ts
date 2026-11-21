@@ -8,18 +8,27 @@ const exhibitions = defineCollection({
   }),
   schema: z.object({
     title: z.string(),
+    subtitle: z.string().optional(),
     titleEn: z.string().optional(),
     category: z.enum(['solo', 'group', 'mapaduboo']),
-    start: z.coerce.date(),
-    end: z.coerce.date(),
+    year: z.number().optional(),
+    // Higher order is newer. Used when a show has no start date.
+    // When both shows have start dates, the dates win.
+    order: z.number().optional(),
+    start: z.coerce.date().optional(),
+    end: z.coerce.date().optional(),
     dateLabel: z.string().optional(),
-    venue: z.string(),
+    venue: z.string().optional(),
     artists: z.array(z.string()).default([]),
     hours: z.string().optional(),
+    organizer: z.string().optional(),
     opening: z.string().optional(),
     closed: z.string().optional(),
     poster: z.string().optional(),
-    photos: z.string(),
+    photos: z.string().optional(),
+    gallery: z
+      .array(z.union([z.string(), z.object({ image: z.string() })]))
+      .optional(),
   }),
 });
 
