@@ -1,8 +1,6 @@
 ---
-title: "<다시 딛는 자리마다>"
-subtitle: |
-  제2회 대전중구미술축제
-  태양을 향해 던져라
+title: "태양을 향해 던져라"
+subtitle: "다시 딛는 자리마다"
 titleEn: "2nd Daejeon Jung-gu Art Festival"
 category: solo
 year: 2026
