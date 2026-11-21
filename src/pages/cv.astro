@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import { cvSections } from '../data/cv';
+
+const leftTitles = new Set(['학력 및 주요 경력', '개인전', '그룹전']);
+const left = cvSections.filter((section) => leftTitles.has(section.title));
+const right = cvSections.filter((section) => !leftTitles.has(section.title));
+
+function renderLine(line: string) {
+  const match = line.match(/^(\d{4}(?:-\d{4})?)(\s[\s\S]*)$/);
+  if (!match) return { year: '', rest: line };
+  return { year: match[1], rest: match[2] };
+}
+---
+
+<Base title="CV" current="cv">
+  <h1 class="cv-title">Hansol Lim CV</h1>
+  <div class="cv-grid">
+    {
+      [left, right].map((column) => (
+        <div class="cv-col">
+          {column.map((section) => (
+            <section class="cv-section">
+              <h2>{section.title}</h2>
+              {section.paragraphs.map((paragraph) => (
+                <p>
+                  {paragraph.split('\n').map((line) => {
+                    const parts = renderLine(line);
+                    return (
+                      <span class="cv-line">
+                        {parts.year ? <strong>{parts.year}</strong> : null}
+                        {parts.rest}
+                      </span>
+                    );
+                  })}
+                </p>
+              ))}
+            </section>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+  <section class="cv-email">
+    <h2>Email</h2>
+    <p><a href="mailto:hansize91@gmail.com">hansize91@gmail.com</a></p>
+    <p><a href="https://www.instagram.com/han_size">@han_size</a></p>
+  </section>
+</Base>

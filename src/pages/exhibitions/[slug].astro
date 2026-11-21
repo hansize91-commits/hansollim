@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Exhibition from '../../components/Exhibition.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('exhibitions');
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<Base title={entry.data.title} current={entry.data.category}>
+  <Exhibition entry={entry} heading="h1" />
+</Base>

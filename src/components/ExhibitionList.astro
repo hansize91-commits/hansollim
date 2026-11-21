@@ -1,0 +1,15 @@
+---
+import Exhibition from './Exhibition.astro';
+import { exhibitionsIn, type Category } from '../lib/exhibitions';
+
+interface Props {
+  category: Category;
+}
+
+const { category } = Astro.props;
+const entries = await exhibitionsIn(category);
+---
+
+<div class="exhibition-list">
+  {entries.map((entry) => <Exhibition entry={entry} />)}
+</div>

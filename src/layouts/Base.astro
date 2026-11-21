@@ -1,0 +1,87 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  current?: string;
+  home?: boolean;
+}
+
+const {
+  title,
+  description = '임한솔 작가의 전시 아카이브 및 포트폴리오',
+  current = '',
+  home = false,
+} = Astro.props;
+
+const fullTitle = title === 'Hansol Lim' ? title : `${title} | Hansol Lim`;
+---
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ko_KR" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600&family=Instrument+Sans:ital,wght@0,400;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    {
+      home ? (
+        <slot />
+      ) : (
+        <>
+          <header class="site-header">
+            <Nav current={current} />
+          </header>
+          <main>
+            <slot />
+          </main>
+          <Footer />
+        </>
+      )
+    }
+    <dialog id="lightbox" class="lightbox">
+      <button type="button" class="lightbox-close" data-close-lightbox>닫기</button>
+      <img alt="" />
+    </dialog>
+    <script>
+      const dialog = document.querySelector('#lightbox');
+      const image = dialog?.querySelector('img');
+      if (dialog instanceof HTMLDialogElement && image) {
+        document.addEventListener('click', (event) => {
+          const target = event.target;
+          if (!(target instanceof Element)) return;
+          const opener = target.closest('[data-full]');
+          if (opener instanceof HTMLElement && opener.dataset.full) {
+            image.src = opener.dataset.full;
+            image.alt = opener.getAttribute('aria-label') ?? '';
+            dialog.showModal();
+            return;
+          }
+          if (target.closest('[data-close-lightbox]') || target === dialog) {
+            dialog.close();
+            image.removeAttribute('src');
+          }
+        });
+        dialog.addEventListener('close', () => {
+          image.removeAttribute('src');
+        });
+      }
+    </script>
+  </body>
+</html>

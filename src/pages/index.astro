@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Hansol Lim" current="home" home>
+  <div class="home">
+    <div class="home-top">
+      <h1 class="wordmark">Hansol Lim</h1>
+      <Nav current="home" />
+    </div>
+    <img
+      class="home-photo"
+      src="/images/home.webp"
+      alt="Hansol Lim 전시 전경"
+      width="1971"
+      height="2400"
+    />
+    <Footer />
+  </div>
+</Base>

@@ -1,0 +1,26 @@
+---
+interface Props {
+  current?: string;
+}
+
+const { current = '' } = Astro.props;
+
+const links = [
+  { href: '/', label: 'Hansol', id: 'home' },
+  { href: '/cv', label: 'CV', id: 'cv' },
+  { href: '/solo', label: '개인전', id: 'solo' },
+  { href: '/group', label: '단체전', id: 'group' },
+  { href: '/mapaduboo', label: '마파두부', id: 'mapaduboo' },
+  { href: '/sseuim', label: '독립출판사 쓰임', id: 'sseuim' },
+];
+---
+
+<nav class="nav" aria-label="메뉴">
+  {
+    links.map((link) => (
+      <a href={link.href} aria-current={current === link.id ? 'page' : undefined}>
+        {link.label}
+      </a>
+    ))
+  }
+</nav>
