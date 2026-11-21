@@ -5,4 +5,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://hansollim.com',
   compressHTML: true,
+  server: {
+    allowedHosts: true,
+  },
 });
