@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { withBase } from './base';
 
 export type ExhibitionEntry = CollectionEntry<'exhibitions'>;
 export type Category = ExhibitionEntry['data']['category'];
@@ -65,7 +66,7 @@ function listImages(dir: string): string[] {
 
 function publicUrl(folder: string, relativePath: string): string {
   const encoded = relativePath.split('/').map((part) => encodeURIComponent(part)).join('/');
-  return `/exhibitions/${folder}/photos/${encoded}`;
+  return withBase(`/exhibitions/${folder}/photos/${encoded}`);
 }
 
 export function photoFiles(folder: string): string[] {
@@ -87,17 +88,18 @@ export function exhibitionPhotos(
   const listed = (gallery ?? [])
     .map((item) => (typeof item === 'string' ? item : item?.image ?? ''))
     .map((item) => item.trim())
-    .filter((item) => item.startsWith('/') && publicFileExists(item));
+    .filter((item) => item.startsWith('/') && publicFileExists(item))
+    .map((item) => withBase(item));
   if (listed.length > 0) return listed;
   return photoFiles(folder);
 }
 
 export function posterFile(folder: string, poster?: string): string | undefined {
   if (!poster) return undefined;
-  if (poster.startsWith('/')) return publicFileExists(poster) ? poster : undefined;
+  if (poster.startsWith('/')) return publicFileExists(poster) ? withBase(poster) : undefined;
   const abs = path.join(process.cwd(), 'public', 'exhibitions', folder, poster);
   if (!fs.existsSync(abs)) return undefined;
-  return `/exhibitions/${folder}/${encodeURIComponent(poster)}`;
+  return withBase(`/exhibitions/${folder}/${encodeURIComponent(poster)}`);
 }
 
 export function paragraphs(body: string | undefined): string[] {

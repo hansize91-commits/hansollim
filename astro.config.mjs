@@ -1,9 +1,11 @@
 import { defineConfig } from 'astro/config';
 
-// Custom domain (hansollim.com) and Cloudflare Pages use the site root.
-// A GitHub project site (username.github.io/repo) needs base: '/repo/'.
+// Temporary GitHub project site while hansollim.com DNS is not connected.
+// When the custom domain is live, restore site to https://hansollim.com,
+// remove `base`, and put hansollim.com back in public/CNAME.
 export default defineConfig({
-  site: 'https://hansollim.com',
+  site: 'https://hansize91-commits.github.io',
+  base: '/hansollim/',
   compressHTML: true,
   server: {
     allowedHosts: true,

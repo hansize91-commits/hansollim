@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../lib/base';
+
 interface Props {
   current?: string;
 }
@@ -6,12 +8,12 @@ interface Props {
 const { current = '' } = Astro.props;
 
 const links = [
-  { href: '/', label: 'Hansol', id: 'home' },
-  { href: '/cv', label: 'CV', id: 'cv' },
-  { href: '/solo', label: '개인전', id: 'solo' },
-  { href: '/group', label: '단체전', id: 'group' },
-  { href: '/mapaduboo', label: '마파두부', id: 'mapaduboo' },
-  { href: '/sseuim', label: '독립출판사 쓰임', id: 'sseuim' },
+  { href: withBase('/'), label: 'Hansol', id: 'home' },
+  { href: withBase('/cv'), label: 'CV', id: 'cv' },
+  { href: withBase('/solo'), label: '개인전', id: 'solo' },
+  { href: withBase('/group'), label: '단체전', id: 'group' },
+  { href: withBase('/mapaduboo'), label: '마파두부', id: 'mapaduboo' },
+  { href: withBase('/sseuim'), label: '독립출판사 쓰임', id: 'sseuim' },
 ];
 ---
 

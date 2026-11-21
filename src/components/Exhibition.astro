@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../lib/base';
 import {
   dateLine,
   paragraphAlign,
@@ -27,7 +28,7 @@ const artists = entry.data.artists ?? [];
         <h1>{entry.data.title}</h1>
       ) : (
         <h2>
-          <a href={`/exhibitions/${entry.id}`}>{entry.data.title}</a>
+          <a href={withBase(`/exhibitions/${entry.id}`)}>{entry.data.title}</a>
         </h2>
       )
     }

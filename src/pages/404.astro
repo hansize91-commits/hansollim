@@ -1,8 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import { withBase } from '../lib/base';
 ---
 
 <Base title="페이지를 찾을 수 없습니다">
   <h1 class="page-title">페이지를 찾을 수 없습니다</h1>
-  <p><a href="/">Hansol</a></p>
+  <p><a href={withBase('/')}>Hansol</a></p>
 </Base>
