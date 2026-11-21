@@ -20,4 +20,4 @@ photos: 2025-mimyung
 
 <빙하>, drawing animation, 2m25s, 2025, 임한솔
 
-<미명>, drwaing animation, 1m53s, 2025, 임한솔
+<미명>, drawing animation, 1m53s, 2025, 임한솔
