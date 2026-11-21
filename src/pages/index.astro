@@ -3,18 +3,19 @@ import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { withBase } from '../lib/base';
+import { site } from '../data/site';
 ---
 
-<Base title="Hansol Lim" current="home" home>
+<Base title={site.name} current="home" home>
   <div class="home">
     <div class="home-top">
-      <h1 class="wordmark">Hansol Lim</h1>
+      <h1 class="wordmark">{site.name}</h1>
       <Nav current="home" />
     </div>
     <img
       class="home-photo"
-      src={withBase('/images/home.webp')}
-      alt="Hansol Lim 전시 전경"
+      src={withBase(site.homeImage)}
+      alt={site.homeImageAlt}
       width="1971"
       height="2400"
     />

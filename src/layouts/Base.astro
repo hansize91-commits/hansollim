@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { withBase } from '../lib/base';
+import { site } from '../data/site';
 
 interface Props {
   title: string;
@@ -13,12 +14,12 @@ interface Props {
 
 const {
   title,
-  description = '임한솔 작가의 전시 아카이브 및 포트폴리오',
+  description = site.description,
   current = '',
   home = false,
 } = Astro.props;
 
-const fullTitle = title === 'Hansol Lim' ? title : `${title} | Hansol Lim`;
+const fullTitle = title === site.name ? title : `${title} | ${site.name}`;
 ---
 
 <!doctype html>

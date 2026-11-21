@@ -1,0 +1,185 @@
+# Pages CMS (https://app.pagescms.org)
+# 저장하면 main 브랜치에 커밋되고, 기존 GitHub Actions가 사이트를 다시 올립니다.
+
+media:
+  - name: exhibition-photos
+    label: 전시 사진
+    input: public/exhibitions
+    output: /exhibitions
+    categories: [image]
+    rename: false
+  - name: site-images
+    label: 사이트 이미지
+    input: public/images
+    output: /images
+    categories: [image]
+    rename: false
+
+content:
+  - name: exhibitions
+    label: 작품·전시
+    type: collection
+    path: src/content/exhibitions
+    format: yaml-frontmatter
+    view:
+      fields: [title, category, year, venue]
+      primary: title
+      sort: [year, title]
+      default:
+        sort: year
+        order: desc
+    description: >
+      새 전시를 만들 때 파일 이름은 2027-my-show.md처럼 영문·숫자·하이픈만 쓰세요.
+      그 이름이 주소가 됩니다. 사진은 미디어의 전시 사진에서
+      public/exhibitions/파일-이름/photos/ 폴더로 올리면 자동으로 보입니다.
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+      - name: subtitle
+        label: 부제
+        type: string
+      - name: titleEn
+        label: 영문 제목
+        type: string
+      - name: category
+        label: 구분
+        type: select
+        required: true
+        options:
+          values:
+            - { value: solo, label: 개인전 }
+            - { value: group, label: 단체전 }
+            - { value: mapaduboo, label: 마파두부 }
+      - name: year
+        label: 연도
+        type: number
+      - name: order
+        label: 순서 (날짜가 없을 때, 큰 숫자가 위)
+        type: number
+      - name: start
+        label: 시작일
+        type: date
+      - name: end
+        label: 종료일
+        type: date
+      - name: dateLabel
+        label: 화면에 보일 날짜
+        type: string
+        description: 비워 두면 시작일·종료일로 만듭니다.
+      - name: venue
+        label: 장소
+        type: string
+      - name: artists
+        label: 참여 작가
+        type: string
+        list: true
+      - name: hours
+        label: 관람 시간
+        type: string
+      - name: organizer
+        label: 주최·주관
+        type: string
+      - name: opening
+        label: 오프닝
+        type: string
+      - name: closed
+        label: 휴관
+        type: string
+      - name: credit
+        label: 크레딧
+        type: string
+      - name: poster
+        label: 포스터 파일 이름
+        type: string
+        description: 예) poster.jpg (전시 폴더 안) 또는 /exhibitions/2026-longing/포스터.jpg
+      - name: photos
+        label: 사진 폴더 이름
+        type: string
+        description: public/exhibitions/ 아래 폴더 이름. 비워 두면 파일 이름을 씁니다.
+      - name: body
+        label: 전시 글
+        type: text
+        description: 문단 사이는 빈 줄로 나누세요. 적은 그대로 화면에 나갑니다.
+
+  - name: site
+    label: 소개·연락처
+    type: file
+    path: src/content/site.json
+    format: json
+    fields:
+      - name: name
+        label: 작가 이름
+        type: string
+        required: true
+      - name: description
+        label: 사이트 설명
+        type: text
+      - name: email
+        label: 이메일
+        type: string
+      - name: instagram
+        label: 인스타그램 표시
+        type: string
+        description: 예) @han_size
+      - name: instagramUrl
+        label: 인스타그램 주소
+        type: string
+      - name: homeImage
+        label: 첫 화면 사진
+        type: image
+        options:
+          path: public/images
+      - name: homeImageAlt
+        label: 첫 화면 사진 설명
+        type: string
+
+  - name: cv
+    label: CV
+    type: file
+    path: src/content/cv.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: 항목 제목
+        type: string
+        required: true
+      - name: paragraphs
+        label: 내용
+        type: text
+        list: true
+        description: 한 칸이 한 문단입니다. 줄바꿈이 필요하면 그 칸 안에서 줄을 바꾸세요.
+
+  - name: press
+    label: 기사
+    type: file
+    path: src/content/press.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        label: 제목
+        type: string
+        required: true
+      - name: outlet
+        label: 매체
+        type: string
+      - name: date
+        label: 날짜
+        type: string
+      - name: href
+        label: 링크
+        type: string
+
+settings:
+  content:
+    merge: true
+  commit:
+    identity: user
+    templates:
+      create: "내용 추가: {path}"
+      update: "내용 수정: {path}"
+      delete: "내용 삭제: {path}"
+      rename: "이름 변경: {oldPath} → {newPath}"
